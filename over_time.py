@@ -2,6 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
 
+# Define output file
+svg_filename = "bugs_per_month.svg"
+
 # Load the data
 file_path = "Bugs.csv"  # Update this path as needed
 bugs_df = pd.read_csv(file_path)
@@ -30,9 +33,6 @@ bug_counts = bug_counts.reindex(date_range, fill_value=0)
 
 # Remove months where the amount of bugs is 0
 bug_counts = bug_counts[bug_counts > 0]
-
-# Define output file
-svg_filename = "bugs_per_month.svg"
 
 # Plot the results
 plt.figure(figsize=(12, 6))
