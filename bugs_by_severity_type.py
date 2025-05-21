@@ -62,7 +62,7 @@ fig.suptitle(
 for i, pct in enumerate(summary["Severe %"]):
     ax.text(
         pct + 0.5, i,
-        f"{pct:.1f}%",
+        f"{pct:.0f}%",        # round to nearest integer
         va="center",
         fontsize=14
     )
