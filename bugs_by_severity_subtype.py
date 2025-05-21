@@ -68,11 +68,14 @@ sns.barplot(
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
 
-# Set axis labels and title
+# Set axis labels
 ax.set_xlabel("Percentage of Critical and Blocker Bugs (%)", fontsize=15)
 ax.set_ylabel("Subtype", fontsize=15)
-ax.set_title(
+
+# Add a centered title at the figure level
+fig.suptitle(
   "Top 15 Bug Subtypes with Highest Percentage of Critical and Blocker Bugs",
+  y=0.97,  # bring title closer to the figure
   fontsize=19
 )
 

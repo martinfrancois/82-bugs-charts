@@ -64,7 +64,12 @@ for label in ax.get_xticklabels():
 # Set labels and title with larger font sizes
 plt.xlabel("Month", fontsize=15)
 plt.ylabel("Number of Bugs Found", fontsize=15)
-plt.title("Bugs Found Per Month", fontsize=19)
+# Add a centered title at the figure level
+plt.suptitle(
+    "Bugs Found Per Month",
+    y=0.932,  # bring title closer to the figure
+    fontsize=19
+)
 
 # Save the figure
 plt.savefig(svg_filename, format="svg", bbox_inches="tight")

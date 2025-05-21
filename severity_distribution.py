@@ -61,7 +61,12 @@ for column in severity_counts.columns:
 # Formatting
 ax.set_xlabel("Number of Bugs", fontsize=16)
 ax.set_ylabel("Bug Type", fontsize=16, labelpad=20)  # Ensure it is not cut off
-ax.set_title("Severity Distribution by Bug Type", fontsize=18, weight="bold")
+# Add a centered title at the figure level
+plt.suptitle(
+    "Severity Distribution by Bug Type",
+    y=0.97,  # bring title closer to the figure
+    fontsize=19
+)
 ax.legend(title="Severity", fontsize=14, title_fontsize=14)
 ax.tick_params(axis="both", labelsize=14)
 

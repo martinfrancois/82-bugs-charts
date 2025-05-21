@@ -23,7 +23,12 @@ plt.yticks(fontsize=14)
 # Set title and labels
 ax.set_ylabel("Bug Type", fontsize=15)
 ax.set_xlabel("Count", fontsize=15)
-ax.set_title("Distribution of Bugs by Type", fontsize=19)
+# Add a centered title at the figure level
+fig.suptitle(
+    "Distribution of Bugs by Type",
+    y=0.96,  # bring title closer to the figure
+    fontsize=19
+)
 
 # Display count numbers next to bars
 for i, v in enumerate(bug_type_counts.values):
