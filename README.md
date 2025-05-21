@@ -10,6 +10,8 @@ python3 -m pip install pandas matplotlib pandas seaborn  # first time only
 python3 over_time.py
 python3 distribution_bugs_per_type.py
 python3 top_15_common_subtypes.py
+python3 distribution_bugs_per_type.py
+python3 bugs_by_severity_subtype.py
 ```
 
 3. Replace the SVGs in the slides
