@@ -1,54 +1,74 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Define output file
+svg_filename = "severity_bug_percentage_subtype_top_15.svg"
 
 # Load the CSV file
-file_path = "Bugs.csv"  # Change this to the correct path of your CSV file
-bugs_df = pd.read_csv(file_path)
+file_path = "Bugs.csv"  # Update with the correct path if necessary
+df = pd.read_csv(file_path)
 
 # Convert Date column to datetime format
-bugs_df["Date"] = pd.to_datetime(
-  bugs_df["Date"],
-  format="%d.%m.%Y",
-  errors="coerce"
-)
+df["Date"] = pd.to_datetime(df["Date"], format="%d.%m.%Y", errors="coerce")
 
 # Calculate total bugs per subtype
-total_bugs_per_subtype = bugs_df["Subtype"].value_counts()
+bug_subtype_counts = df["Subtype"].value_counts()
 
 # Calculate total severe (Blocker + Critical) bugs per subtype
-severe_bugs_per_subtype = (
-  bugs_df[bugs_df["Severity"].isin(["Blocker", "Critical"])]
+severe_subtype_counts = (
+  df[df["Severity"].isin(["Blocker", "Critical"])]
   .groupby("Subtype")
   .size()
 )
 
 # Calculate percentage of severe bugs per subtype
-severe_percentage = (
-        severe_bugs_per_subtype / total_bugs_per_subtype * 100
+severe_percentage_subtype = (
+  severe_subtype_counts.div(bug_subtype_counts).mul(100).fillna(0)
 )
 
-# Combine into a dataframe and sort by severity percentage
-severity_df = pd.DataFrame({
-  "Total Bugs": total_bugs_per_subtype,
-  "Severe Bugs": severe_bugs_per_subtype.fillna(0).astype(int),
-  "Severe Percentage": severe_percentage.fillna(0)
-}).sort_values("Severe Percentage", ascending=False)
+# Combine into a DataFrame and sort by percentage descending, then subtype ascending
+summary_df = pd.DataFrame({
+  "Total Bugs":        bug_subtype_counts,
+  "Severe Bugs":       severe_subtype_counts.fillna(0).astype(int),
+  "Severe Percentage": severe_percentage_subtype
+}).reset_index().rename(columns={"index": "Subtype"})
 
-# Limit to the top 15 subtypes
-top15 = severity_df.head(15).rename(index={
-  "Missing translation with fallback to English / Incorrect Language / Inconsistent Language":
-    "Translation"
-})
+summary_df = summary_df.sort_values(
+  by=["Severe Percentage", "Subtype"],
+  ascending=[False, True]
+)
 
-# Create figure and axes
+# Limit to the top 15 subtypes and rename any overly long label
+top15_df = (
+  summary_df
+  .head(15)
+  .set_index("Subtype")
+  .rename(index={
+    "Missing translation with fallback to English / Incorrect Language / Inconsistent Language":
+      "Translation"
+  })
+)
+
+# Apply Seaborn white style
+sns.set_style("white")
+
+# Create the figure
 fig, ax = plt.subplots(figsize=(12, 6))
 
-# Plot horizontal bar chart on our axes
-top15["Severe Percentage"] \
-  .sort_values() \
-  .plot(kind="barh", color="black", width=0.7, ax=ax)
+# Plot horizontal barplot with Seaborn
+sns.barplot(
+  x=top15_df["Severe Percentage"],
+  y=top15_df.index,
+  color="black",
+  ax=ax
+)
 
-# Labels and title
+# Set font size for tick labels
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+
+# Set axis labels and title
 ax.set_xlabel("Percentage of Critical and Blocker Bugs (%)", fontsize=15)
 ax.set_ylabel("Subtype", fontsize=15)
 ax.set_title(
@@ -56,24 +76,23 @@ ax.set_title(
   fontsize=19
 )
 
-# Grid styling
-ax.grid(axis="x", linestyle="--", alpha=0.7)
-ax.grid(axis="y", linestyle="", alpha=0)
-
-# Annotate each bar with its value
-for idx, val in enumerate(top15["Severe Percentage"].sort_values()):
-  ax.text(val + 1, idx, f"{val:.1f}%", va="center", fontsize=14)
+# Annotate each bar with its percentage
+for i, (subtype, row) in enumerate(top15_df.iterrows()):
+  val = row["Severe Percentage"]
+  ax.text(val + 0.5, i, f"{val:.1f}%", va="center", fontsize=14)
 
 # Remove the top and right spines
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
 
-# Adjust layout and save
-plt.tight_layout()
-fig.savefig(
-  "severity_bug_percentage_subtype_top_15.svg",
-  format="svg",
-  bbox_inches="tight"
-)
+# Hide tick marks on the y-axis
+ax.tick_params(axis="y", which="both", length=0)
 
-print("SVG visualization saved as: severity_bug_percentage_subtype_top_15.svg")
+# Adjust layout to prevent label cutoff
+plt.tight_layout()
+
+# Save the figure
+plt.savefig(svg_filename, format="svg", bbox_inches="tight")
+plt.close()
+
+print(f"Graph saved as {svg_filename}")
