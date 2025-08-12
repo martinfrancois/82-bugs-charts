@@ -14,6 +14,7 @@ python3 distribution_bugs_per_type.py
 python3 bugs_by_severity_subtype.py
 python3 bugs_by_severity_type.py
 python3 severity_over_time.py
+python3 animation.py
 ```
 
 3. Replace the SVGs in the slides
