@@ -3,8 +3,13 @@
 1. Save the first sheet of `Bugs.xlsx` as `Bugs.csv` in this directory
 2. Run the following code:
 
+First time setup:
+```bash
+python3 -m venv venv
 ```
-python3 -m venv venv  # first time only
+
+Generate diagrams:
+```bash
 source venv/bin/activate
 python3 -m pip install pandas matplotlib pandas seaborn  # first time only
 python3 over_time.py
@@ -14,6 +19,7 @@ python3 distribution_bugs_per_type.py
 python3 bugs_by_severity_subtype.py
 python3 bugs_by_severity_type.py
 python3 severity_over_time.py
+python3 severity_distribution.py
 python3 animation.py
 ```
 
