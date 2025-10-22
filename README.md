@@ -6,12 +6,12 @@
 First time setup:
 ```bash
 python3 -m venv venv
+python3 -m pip install pandas matplotlib pandas seaborn  # first time only
 ```
 
 Generate diagrams:
 ```bash
 source venv/bin/activate
-python3 -m pip install pandas matplotlib pandas seaborn  # first time only
 python3 over_time.py
 python3 distribution_bugs_per_type.py
 python3 top_15_common_subtypes.py
