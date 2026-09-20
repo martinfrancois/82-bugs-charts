@@ -8,8 +8,8 @@ Python scripts that generate the charts for the talk "82 Bugs" from a CSV export
 First time setup:
 
 ```bash
-git clone https://github.com/martinfrancois/82-bugs-python.git
-cd 82-bugs-python
+git clone https://github.com/martinfrancois/82-bugs-charts.git
+cd 82-bugs-charts
 python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install -r requirements.txt
