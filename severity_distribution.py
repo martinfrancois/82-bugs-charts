@@ -1,9 +1,10 @@
+import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the CSV file
-file_path = "Bugs.csv"  # Change to the correct file path
+file_path = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"  # CSV path: first command-line argument, Bugs.csv when omitted
 df = pd.read_csv(file_path)
 
 # Convert Date column to datetime

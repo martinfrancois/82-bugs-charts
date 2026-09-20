@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -6,7 +7,7 @@ import seaborn as sns
 svg_filename = "distribution_bugs_per_type.svg"
 
 # Load the CSV file
-file_path = "Bugs.csv"  # Update with the correct path if necessary
+file_path = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"  # CSV path: first command-line argument, Bugs.csv when omitted
 df = pd.read_csv(file_path)
 
 # Count of bugs per type
