@@ -1,0 +1,61 @@
+Date,Type of Bug,Subtype,Severity,Employee Count,Industry/Sector
+04.11.2022,Performance,Timeout on export,Low,380,Insurance
+16.11.2022,Performance,Timeout on export,Critical,380,Manufacturing
+26.11.2022,UI,Layout broken on small screens,High,,Insurance
+17.12.2022,Localization,Missing translation with fallback to English / Incorrect Language / Inconsistent Language,Low,380,Media
+05.01.2023,Localization,Missing translation with fallback to English / Incorrect Language / Inconsistent Language,Medium,"2,400",Automotive
+16.01.2023,Data,Encoding problem in import,,950,Public sector
+26.04.2023,Functional,Data not saved,Low,"7,800",Real estate
+02.05.2023,Security,Session not invalidated,Medium,,Non-profit
+04.06.2023,Localization,Wrong date format,Medium,,Telecommunications
+02.07.2023,Security,Session not invalidated,Critical,"42,000",Logistics
+27.07.2023,Localization,Wrong currency symbol,High,"15,000",Insurance
+08.09.2023,Integration,Webhook delivered twice,,"7,800",Hospitality
+28.10.2023,Data,Encoding problem in import,High,12,Healthcare
+30.10.2023,Performance,Slow page load,Medium,"42,000",Agriculture
+12.12.2023,UI,Button not clickable,Critical,12,Hospitality
+21.02.2024,Functional,Wrong calculation,Low,12,Hospitality
+05.03.2024,Integration,Third-party API error not handled,Medium,"2,400",Agriculture
+06.03.2024,Performance,Slow page load,High,"42,000",Education
+08.03.2024,UI,Wrong icon,Blocker,,Hospitality
+13.03.2024,UI,Overlapping text,Medium,,Agriculture
+21.03.2024,Localization,Wrong date format,Blocker,950,Retail
+27.03.2024,Security,Session not invalidated,High,45,Education
+27.04.2024,Data,Duplicate records,Medium,950,Media
+26.05.2024,Performance,Slow page load,High,950,Hospitality
+31.05.2024,Functional,Missing validation,Medium,"120,000",Travel
+02.06.2024,Functional,Missing validation,High,45,Banking
+02.06.2024,Data,Duplicate records,Critical,950,Non-profit
+10.06.2024,UI,Button not clickable,,950,Hospitality
+14.06.2024,UI,Button not clickable,High,380,Real estate
+16.06.2024,Functional,Broken link,,950,Insurance
+23.06.2024,Functional,Wrong calculation,Low,45,Energy
+27.06.2024,Integration,Third-party API error not handled,Medium,"120,000",Insurance
+23.07.2024,Performance,Memory growth,Critical,,Non-profit
+04.08.2024,Functional,Wrong default value,Medium,"15,000",Media
+22.08.2024,Functional,Wrong default value,Medium,45,Retail
+03.10.2024,Integration,Webhook delivered twice,Low,12,Telecommunications
+19.10.2024,Integration,Webhook delivered twice,,"7,800",Energy
+21.10.2024,Localization,Missing translation with fallback to English / Incorrect Language / Inconsistent Language,Critical,"7,800",Banking
+29.11.2024,UI,Layout broken on small screens,Blocker,"7,800",Education
+11.12.2024,Localization,Missing translation with fallback to English / Incorrect Language / Inconsistent Language,High,45,Energy
+19.12.2024,Integration,Webhook delivered twice,Medium,"2,400",Education
+03.01.2025,Security,Missing authorization check,High,380,Hospitality
+27.01.2025,Localization,Wrong currency symbol,,45,Real estate
+03.02.2025,Localization,Wrong currency symbol,High,120,Hospitality
+05.02.2025,Functional,Wrong calculation,Critical,380,Agriculture
+24.02.2025,Localization,Wrong currency symbol,Critical,"42,000",Hospitality
+13.03.2025,Data,Duplicate records,High,12,Non-profit
+14.03.2025,Localization,Wrong date format,,45,Healthcare
+20.03.2025,Security,Session not invalidated,Medium,"2,400",Telecommunications
+21.03.2025,Performance,Timeout on export,Critical,,Travel
+22.03.2025,UI,Layout broken on small screens,,380,Logistics
+24.03.2025,Localization,Wrong currency symbol,Medium,950,Energy
+12.04.2025,Performance,Slow page load,Low,"2,400",Travel
+26.04.2025,Performance,Slow page load,Blocker,950,Retail
+30.04.2025,Localization,Wrong date format,Medium,45,Energy
+09.05.2025,Performance,Slow page load,Medium,45,Banking
+14.05.2025,Performance,Memory growth,Critical,"2,400",Public sector
+27.05.2025,Security,Session not invalidated,Medium,,Public sector
+14.06.2025,Localization,Missing translation with fallback to English / Incorrect Language / Inconsistent Language,High,"2,400",Education
+17.06.2025,Localization,Missing translation with fallback to English / Incorrect Language / Inconsistent Language,Medium,"15,000",Manufacturing
