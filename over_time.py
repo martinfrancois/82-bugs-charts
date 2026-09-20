@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
@@ -6,7 +7,7 @@ from matplotlib.ticker import MultipleLocator
 svg_filename = "bugs_per_month.svg"
 
 # Load the data
-file_path = "Bugs.csv"  # Update this path as needed
+file_path = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"  # CSV path: first command-line argument, Bugs.csv when omitted
 bugs_df = pd.read_csv(file_path)
 
 # Ensure the date column is properly formatted

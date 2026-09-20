@@ -13,6 +13,7 @@ Changes in this version:
 - Dynamic left margin so long y labels never get cut off
 """
 
+import sys
 from pathlib import Path
 from typing import List, Optional, Tuple
 
@@ -24,7 +25,7 @@ from matplotlib.animation import FuncAnimation, PillowWriter
 
 # --------------- Config ---------------
 
-CSV_PATH = "Bugs.csv"
+CSV_PATH = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"  # CSV path: first command-line argument, Bugs.csv when omitted
 OUT_DIR = Path("out")
 START_MONTH = "2024-01-01"
 STEPS_PER_MONTH = 10
