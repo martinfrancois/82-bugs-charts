@@ -1,11 +1,12 @@
-import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from bugs_csv import csv_path
+
 # --- Settings ---
 svg_filename = "severity_bug_percentage_by_type.svg"
-file_path    = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"  # CSV path: first command-line argument, Bugs.csv when omitted
+file_path    = csv_path()
 
 # --- Load and preprocess ---
 df = pd.read_csv(file_path)

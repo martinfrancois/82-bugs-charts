@@ -1,6 +1,8 @@
 """Run every chart script on the synthetic CSV and check that the files appear."""
 
+import importlib.util
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -31,34 +33,43 @@ EXPECTED_OUTPUT = {
 }
 
 
-def run_script(script: str, cwd: Path) -> None:
-    env = dict(os.environ, MPLBACKEND="Agg")
+def load_repo_module(name: str):
+    spec = importlib.util.spec_from_file_location(name, REPO / f"{name}.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def run(args: list[str], cwd: Path, timeout: int) -> None:
     subprocess.run(
-        [sys.executable, str(REPO / script), str(EXAMPLE_CSV)],
+        [sys.executable, *args],
         cwd=cwd,
-        env=env,
+        env=dict(os.environ, MPLBACKEND="Agg"),
         check=True,
-        timeout=300,
+        timeout=timeout,
     )
 
 
 @pytest.mark.parametrize("script", sorted(EXPECTED_OUTPUT))
 def test_script_writes_its_files(script: str, tmp_path: Path) -> None:
-    run_script(script, tmp_path)
+    run([str(REPO / script), str(EXAMPLE_CSV)], tmp_path, timeout=300)
     for name in EXPECTED_OUTPUT[script]:
         produced = tmp_path / name
         assert produced.is_file(), f"{script} did not write {name}"
         assert produced.stat().st_size > 0, f"{name} is empty"
 
 
+def test_script_without_argument_reads_default_csv(tmp_path: Path) -> None:
+    default_csv = load_repo_module("bugs_csv").DEFAULT_CSV
+    shutil.copy(EXAMPLE_CSV, tmp_path / default_csv)
+    script = "distribution_bugs_per_type.py"
+    run([str(REPO / script)], tmp_path, timeout=300)
+    for name in EXPECTED_OUTPUT[script]:
+        assert (tmp_path / name).is_file(), f"{script} did not write {name}"
+
+
 def test_generate_all_runs_every_script(tmp_path: Path) -> None:
-    subprocess.run(
-        [sys.executable, str(REPO / "generate_all.py"), str(EXAMPLE_CSV)],
-        cwd=tmp_path,
-        env=dict(os.environ, MPLBACKEND="Agg"),
-        check=True,
-        timeout=600,
-    )
+    run([str(REPO / "generate_all.py"), str(EXAMPLE_CSV)], tmp_path, timeout=600)
     for files in EXPECTED_OUTPUT.values():
         for name in files:
             assert (tmp_path / name).is_file(), f"generate_all.py did not write {name}"
