@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,8 +6,10 @@ from matplotlib.ticker import PercentFormatter, MultipleLocator
 from pathlib import Path
 from datetime import datetime
 
+from bugs_csv import csv_path
+
 # ---------- Config ----------
-CSV_PATH = Path(sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv")  # CSV path: first command-line argument, Bugs.csv when omitted
+CSV_PATH = Path(csv_path())
 START_DATE = datetime(2024, 1, 1)
 
 OUT_MONTHLY = Path("bugs_severity_over_time_monthly.svg")

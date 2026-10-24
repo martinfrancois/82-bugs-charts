@@ -1,13 +1,14 @@
-import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+from bugs_csv import csv_path
 
 # Define output file
 svg_filename = "top_15_industries_sectors.svg"
 
 # Load the CSV file
-file_path = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"  # CSV path: first command-line argument, Bugs.csv when omitted
+file_path = csv_path()
 df = pd.read_csv(file_path)
 
 # Clean and process the data

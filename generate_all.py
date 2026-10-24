@@ -26,11 +26,11 @@ SCRIPTS = [
 
 
 def main() -> None:
-    csv_path = sys.argv[1] if len(sys.argv) > 1 else "Bugs.csv"
     here = Path(__file__).resolve().parent
     for name in SCRIPTS:
         print(f"--- {name}", flush=True)
-        subprocess.run([sys.executable, str(here / name), csv_path], check=True)
+        # Pass the arguments through so a missing one falls back to the default in bugs_csv.py.
+        subprocess.run([sys.executable, str(here / name), *sys.argv[1:]], check=True)
 
 
 if __name__ == "__main__":
