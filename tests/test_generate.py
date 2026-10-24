@@ -50,6 +50,10 @@ def run(args: list[str], cwd: Path, timeout: int) -> None:
     )
 
 
+def test_generate_all_lists_every_script() -> None:
+    assert sorted(load_repo_module("generate_all").SCRIPTS) == sorted(EXPECTED_OUTPUT)
+
+
 @pytest.mark.parametrize("script", sorted(EXPECTED_OUTPUT))
 def test_script_writes_its_files(script: str, tmp_path: Path) -> None:
     run([str(REPO / script), str(EXAMPLE_CSV)], tmp_path, timeout=300)

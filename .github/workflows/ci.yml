@@ -25,5 +25,3 @@ jobs:
           cache-dependency-path: requirements-dev.txt
       - run: python -m pip install -r requirements-dev.txt
       - run: python -m pytest
-      - name: Run the documented synthetic example
-        run: python3 generate_all.py examples/bugs.csv
