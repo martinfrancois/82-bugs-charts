@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 """
-Animated monthly trends for:
-1) Bug Types
-2) Bug Subtypes (top N)
+Animate monthly counts by bug type and the most frequent bug subtypes.
 
-Changes in this version:
-- Month label shown at top left outside the chart
-- Larger fonts for ticks, labels, and title
-- Smooth transitions between months
-- Horizontal black bars
-- Robust date parsing without warnings
-- Dynamic left margin so long y labels never get cut off
+Horizontal black bars transition between months, with the month label above
+the chart and a left margin sized to fit the category labels.
 """
 
 from pathlib import Path
